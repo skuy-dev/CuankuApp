@@ -1,18 +1,15 @@
-package com.example.cuanku.screens.auth
+package com.example.cuanku.screens.activity.auth
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.viewbinding.ViewBinding
-import com.example.cuanku.R
 import com.example.cuanku.base.BaseActivity
 import com.example.cuanku.base.NetworkResult
 import com.example.cuanku.databinding.ActivityRegisterBinding
 import com.example.cuanku.request.RegisterRequest
-import com.example.cuanku.screens.dasboard.DashboardActivity
+import com.example.cuanku.screens.activity.dashboard.DashboardActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,7 +22,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
     }
 
     override fun initialization() {
-        setupView()
         onClickListener()
     }
 
@@ -47,13 +43,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
                     }
                 }
             }
-
-        }
-    }
-
-    private fun setupView() {
-        binding.layoutRegister.apply {
-            btnAuth.text = "Register"
         }
     }
 
@@ -68,7 +57,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
     }
 
     private fun onClickListener() {
-        binding.layoutRegister.btnAuth.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
             checkFormRegister()
         }
     }

@@ -1,4 +1,4 @@
-package com.example.cuanku.screens.auth
+package com.example.cuanku.screens.activity.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

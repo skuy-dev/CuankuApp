@@ -1,8 +1,9 @@
-package com.example.cuanku.screens.auth
+package com.example.cuanku.screens.activity.auth
 
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
 import com.example.cuanku.base.BaseActivity
@@ -10,7 +11,7 @@ import com.example.cuanku.base.NetworkResult
 import com.example.cuanku.databinding.ActivityLoginBinding
 import com.example.cuanku.helper.*
 import com.example.cuanku.request.LoginRequest
-import com.example.cuanku.screens.dasboard.DashboardActivity
+import com.example.cuanku.screens.activity.dashboard.DashboardActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -52,7 +53,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         binding.layoutLogin.apply {
             tilName.visibility = GONE
             tilPhone.visibility = GONE
-            btnAuth.text = "Login"
+            txtTitleName.visibility = GONE
+            txtTitleNumber.visibility = GONE
         }
 
         setupTextInputWatcher()
@@ -108,11 +110,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     private fun onClickListener() {
-        binding.layoutLogin.btnAuth.setOnClickListener {
-            checkFormLogin()
-        }
-        binding.txtRegister.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+        binding.layoutButton.apply {
+            btnLogin.setOnClickListener {
+                checkFormLogin()
+            }
+            btngotoRegist.setOnClickListener {
+                startActivity(Intent(applicationContext, RegisterActivity::class.java))
+            }
         }
     }
 

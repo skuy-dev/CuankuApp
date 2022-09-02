@@ -25,7 +25,7 @@ class AppModule {
         okHttpClient: OkHttpClient
     ): Retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl("http://162.0.223.55:9092/api/v1/")
+        .baseUrl("https://cuanku.skuy.dev/api/v1/")
         .client(okHttpClient)
         .build()
 

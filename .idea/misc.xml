@@ -3,10 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/drawable/background_gradient.xml" value="0.16666666666666666" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/drawable/bg_top_radius.xml" value="0.16666666666666666" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/drawable/ic_add.xml" value="0.1045" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/activity_dashboard.xml" value="0.22" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/activity_register.xml" value="0.22" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/fragment_book.xml" value="0.22" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/fragment_targets.xml" value="0.3333333333333333" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/fragment_wallet.xml" value="0.2" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/item_targets.xml" value="0.22" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/view_button.xml" value="0.14921875" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/view_form_auth.xml" value="0.22" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/menu/menu_botnav.xml" value="0.15092592592592594" />
       </map>
     </option>
   </component>

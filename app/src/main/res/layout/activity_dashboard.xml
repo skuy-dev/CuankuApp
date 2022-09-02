@@ -1,102 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    tools:context=".screens.dasboard.DashboardActivity">
+    tools:context=".screens.activity.dashboard.DashboardActivity">
 
-    <TextView
-        android:id="@+id/txtTitle"
+    <FrameLayout
+        android:id="@+id/flContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:text="Welcome To Modern Platform Money"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"
+        android:layout_height="match_parent"
+        android:paddingBottom="55dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/btnTarget"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="30dp"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintEnd_toStartOf="@id/btnTabungan"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtTitle">
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:fabCradleMargin="10dp"
+        android:background="@color/purple_200"
+        app:fabCradleRoundedCornerRadius="10dp"
+        app:fabCradleVerticalOffset="10dp"
+        app:layout_anchorGravity="center">
 
-        <LinearLayout
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/botNav"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/teal_700"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:background="@android:color/transparent"
+            app:menu="@menu/menu_botnav" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Target"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="30dp"
-                android:text="Tambah Target Baru"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/bottomAppBar" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-        </LinearLayout>
+    <!--    <com.google.android.material.bottomappbar.BottomAppBar-->
+    <!--        android:id="@+id/bottomAppBar"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="bottom"-->
+    <!--        app:fabCradleMargin="10dp"-->
+    <!--        app:fabCradleRoundedCornerRadius="10dp"-->
+    <!--        app:fabCradleVerticalOffset="10dp"-->
+    <!--        app:layout_anchorGravity="center">-->
 
-    </androidx.cardview.widget.CardView>
+    <!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
+    <!--            android:id="@+id/botNav"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:background="@android:color/transparent"-->
+    <!--            app:menu="@menu/menu_botnav" />-->
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/btnTabungan"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="30dp"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnTarget"
-        app:layout_constraintTop_toBottomOf="@id/txtTitle">
+    <!--    </com.google.android.material.bottomappbar.BottomAppBar>-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/purple_200"
-            android:orientation="vertical">
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--        android:id="@+id/fab"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:contentDescription="@string/app_name"-->
+    <!--        app:layout_anchor="@id/bottomAppBar" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Target"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/btnTarget"-->
+    <!--        android:layout_width="150dp"-->
+    <!--        android:layout_height="200dp"-->
+    <!--        android:layout_marginTop="30dp"-->
+    <!--        app:cardCornerRadius="15dp"-->
+    <!--        app:layout_constraintEnd_toStartOf="@id/btnTabungan"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/txtTitle">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="30dp"
-                android:text="Tambah Target Baru"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:background="@color/teal_700"-->
+    <!--            android:gravity="center_vertical"-->
+    <!--            android:orientation="vertical"-->
+    <!--            android:padding="10dp">-->
 
-        </LinearLayout>
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:text="Target"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="20sp"-->
+    <!--                android:textStyle="bold" />-->
 
-    </androidx.cardview.widget.CardView>
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_gravity="bottom"-->
+    <!--                android:layout_marginTop="30dp"-->
+    <!--                android:text="Tambah Target Baru"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="18sp" />-->
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--        </LinearLayout>-->
+
+    <!--    </androidx.cardview.widget.CardView>-->
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/btnTabungan"-->
+    <!--        android:layout_width="150dp"-->
+    <!--        android:layout_height="200dp"-->
+    <!--        android:layout_marginTop="30dp"-->
+    <!--        app:cardCornerRadius="15dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toEndOf="@id/btnTarget"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/txtTitle">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:background="@color/purple_200"-->
+    <!--            android:orientation="vertical">-->
+
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:text="Target"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="20sp"-->
+    <!--                android:textStyle="bold" />-->
+
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_gravity="bottom"-->
+    <!--                android:layout_marginTop="30dp"-->
+    <!--                android:text="Tambah Target Baru"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="18sp" />-->
+
+    <!--        </LinearLayout>-->
+
+    <!--    </androidx.cardview.widget.CardView>-->
+

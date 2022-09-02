@@ -1,17 +1,15 @@
-package com.example.cuanku.screens.splash
+package com.example.cuanku.screens.activity.splashscreen
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import com.example.cuanku.base.BaseActivity
 import com.example.cuanku.databinding.ActivitySplashScreenBinding
 import com.example.cuanku.helper.AppManager
-import com.example.cuanku.screens.auth.LoginActivity
-import com.example.cuanku.screens.dasboard.DashboardActivity
+import com.example.cuanku.screens.activity.auth.LoginActivity
+import com.example.cuanku.screens.activity.dashboard.DashboardActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -27,11 +25,16 @@ class SplashScreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
     }
 
     override fun initialization() {
-        loadSession()
+//        loadSession()
     }
 
     override fun observeViewModel() {
 //        TODO("Not yet implemented")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        loadSession()
     }
 
     private fun loadSession() {
