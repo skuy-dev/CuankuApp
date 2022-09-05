@@ -12,4 +12,6 @@ class TargetsDataSource @Inject constructor(private val service: TargetsServiceI
 
     suspend fun addTargets(request: AddTargetRequest) = service.addTargets(request)
 
+    suspend fun getDetailTarget(id: Int?) = service.getDetailTarget(id)
+
 }

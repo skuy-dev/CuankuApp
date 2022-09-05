@@ -1,19 +1,35 @@
 package com.example.cuanku.response
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
-data class ListTargetsResponse(
+data class DetailTargetResponse(
 
     @field:SerializedName("data")
-    val data: ArrayList<DataListTargets>? = null,
+    val data: DataItem? = null,
 
     @field:SerializedName("meta")
-    val meta: MetaListTarget? = null
+    val meta: MetaDetailTarget? = null
 )
 
-data class MetaListTarget(
+data class UserTargetsItem(
+
+    @field:SerializedName("nominal")
+    val nominal: Int? = null,
+
+    @field:SerializedName("updated_at")
+    val updatedAt: String? = null,
+
+    @field:SerializedName("created_at")
+    val createdAt: String? = null,
+
+    @field:SerializedName("target_id")
+    val targetId: Int? = null,
+
+    @field:SerializedName("id")
+    val id: Int? = null
+)
+
+data class MetaDetailTarget(
 
     @field:SerializedName("code")
     val code: Int? = null,
@@ -22,11 +38,13 @@ data class MetaListTarget(
     val messages: String? = null
 )
 
-@Parcelize
-data class DataListTargets(
+data class DataItem(
 
     @field:SerializedName("duration")
     val duration: String? = null,
+
+    @field:SerializedName("user_targets")
+    val userTargets: ArrayList<UserTargetsItem>? = null,
 
     @field:SerializedName("nominal")
     val nominal: Int? = null,
@@ -37,8 +55,8 @@ data class DataListTargets(
     @field:SerializedName("user_id")
     val userId: Int? = null,
 
-    @SerializedName("image_url")
-    val image_url: String? = null,
+    @field:SerializedName("image_url")
+    val imageUrl: Any? = null,
 
     @field:SerializedName("name")
     val name: String? = null,
@@ -51,4 +69,4 @@ data class DataListTargets(
 
     @field:SerializedName("remaining")
     val remaining: Int? = null
-): Parcelable
+)

@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/menuBuku"
         android:icon="@drawable/ic_buku"
-        android:title="Buku" />
+        android:title="Buku"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/menuTarget"
         android:icon="@drawable/ic_target"
-        android:title="Target" />
+        android:title="Target"
+        android:enabled="true" />
+    <item
+        android:title="" />
 
     <item
         android:id="@+id/menuAnalisis"
         android:icon="@drawable/ic_analisis"
-        android:title="Target" />
+        android:title="Target"
+        android:enabled="true" />
 
     <item
         android:id="@+id/menuPengaturan"

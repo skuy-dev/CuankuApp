@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    tools:context=".screens.fragment.targets.AddTargetsFragment">
+    tools:context=".screens.activity.targets.add.AddTargetActivity">
 
     <TextView
         android:id="@+id/txtTitleName"
@@ -80,11 +78,11 @@
         android:id="@+id/btnAddTarget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:background="@drawable/background_gradient"
+        android:padding="10dp"
         android:text="Tambah Tabungan"
         android:textAllCaps="false"
-        android:padding="10dp"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edtHarga" />

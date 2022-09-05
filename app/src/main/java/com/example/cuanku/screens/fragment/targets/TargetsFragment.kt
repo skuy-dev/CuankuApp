@@ -1,23 +1,21 @@
 package com.example.cuanku.screens.fragment.targets
 
+import android.content.Intent
 import android.view.LayoutInflater
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cuanku.R
 import com.example.cuanku.base.BaseFragment
 import com.example.cuanku.base.NetworkResult
 import com.example.cuanku.databinding.FragmentTargetsBinding
 import com.example.cuanku.helper.AppManager
 import com.example.cuanku.response.DataListTargets
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.example.cuanku.screens.activity.targets.TargetsViewModel
+import com.example.cuanku.screens.activity.targets.detail.DetailTargetActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class TargetsFragment : BaseFragment<FragmentTargetsBinding>() {
+class TargetsFragment : BaseFragment<FragmentTargetsBinding>(), TargetsAdapter.OnItemClickListener {
 
     private val viewModel: TargetsViewModel by viewModels()
     private lateinit var targetsAdapter: TargetsAdapter
@@ -30,7 +28,6 @@ class TargetsFragment : BaseFragment<FragmentTargetsBinding>() {
     }
 
     override fun initialization() {
-        setonClickListener()
         setupListTarget()
     }
 
@@ -41,8 +38,7 @@ class TargetsFragment : BaseFragment<FragmentTargetsBinding>() {
                 is NetworkResult.Success -> {
                     val data = response.data?.data
                     if (!data.isNullOrEmpty()) {
-//                        targetsAdapter.differ.submitList(data)
-                        targetsAdapter.setData(data)
+                        targetsAdapter.differ.submitList(data)
                     }
                 }
             }
@@ -50,7 +46,7 @@ class TargetsFragment : BaseFragment<FragmentTargetsBinding>() {
     }
 
     private fun setupListTarget() {
-        targetsAdapter = TargetsAdapter()
+        targetsAdapter = TargetsAdapter(this@TargetsFragment)
         binding.rvListTargets.apply {
             val linearLayout = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             linearLayout.reverseLayout = true
@@ -60,12 +56,11 @@ class TargetsFragment : BaseFragment<FragmentTargetsBinding>() {
         }
     }
 
-
-    private fun setonClickListener() {
-        binding.btnAddTarget.setOnClickListener {
-            val dialog = AddTargetsFragment()
-            dialog.show(parentFragmentManager, "dialogaddtarget")
-        }
+    override fun onItemClicked(data: DataListTargets) {
+        startActivity(
+            Intent(context, DetailTargetActivity::class.java)
+                .putExtra("TARGET", data)
+        )
     }
 
 }

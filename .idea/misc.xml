@@ -9,14 +9,17 @@
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/drawable/rounded_dialog.xml" value="0.1045" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/activity_add_target.xml" value="0.2" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/activity_dashboard.xml" value="0.22" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/activity_detail_target.xml" value="0.2" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/activity_register.xml" value="0.22" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
-        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/fragment_add_targets.xml" value="0.3333333333333333" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/fragment_add_targets.xml" value="0.20307692307692307" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/fragment_book.xml" value="0.22" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/fragment_dashboard_dialog.xml" value="0.19692307692307692" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/fragment_targets.xml" value="0.22" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/fragment_wallet.xml" value="0.2" />
+        <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/item_history_target.xml" value="0.22" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/item_targets.xml" value="0.22" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/view_button.xml" value="0.14921875" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/layout/view_form_auth.xml" value="0.22" />

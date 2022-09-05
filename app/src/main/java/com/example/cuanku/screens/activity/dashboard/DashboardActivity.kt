@@ -30,6 +30,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
 
     override fun initialization() {
         setupBotNav()
+        setOnClickListener()
     }
 
     override fun observeViewModel() {
@@ -57,6 +58,13 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
                 }
                 false
             }
+        }
+    }
+
+    private fun setOnClickListener() {
+        binding.fab.setOnClickListener {
+            val dialog = DashboardDialogFragment()
+            dialog.show(supportFragmentManager, "dialog")
         }
     }
 
