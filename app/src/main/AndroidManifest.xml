@@ -17,7 +17,9 @@
         android:theme="@style/Theme.Cuanku"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".AddTargetActivity"
+            android:exported="false" />
         <activity
             android:name=".screens.activity.dashboard.DashboardActivity"
             android:exported="false" />

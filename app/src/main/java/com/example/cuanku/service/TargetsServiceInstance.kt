@@ -1,15 +1,20 @@
 package com.example.cuanku.service
 
+import com.example.cuanku.request.AddTargetRequest
+import com.example.cuanku.response.AddTargetResponse
 import com.example.cuanku.response.ListTargetsResponse
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface TargetsServiceInstance {
 
     @GET("targets")
     suspend fun getListTargets(
-        @Header("Authorization") authHeader: String): Response<ListTargetsResponse>
+    ): Response<ListTargetsResponse>
+
+    @POST("targets")
+    suspend fun addTargets(
+        @Body request: AddTargetRequest
+    ): Response<AddTargetResponse>
 
 }

@@ -1,22 +1,16 @@
 package com.example.cuanku.screens.activity.dashboard
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.cuanku.R
 import com.example.cuanku.base.BaseActivity
 import com.example.cuanku.databinding.ActivityDashboardBinding
-import com.example.cuanku.helper.AppManager
 import com.example.cuanku.screens.fragment.BookFragment
-import com.example.cuanku.screens.fragment.WalletFragment
 import com.example.cuanku.screens.fragment.targets.TargetsFragment
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
@@ -39,7 +33,6 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
     }
 
     override fun observeViewModel() {
-//        TODO("Not yet implemented")
     }
 
     private fun setupBotNav() {
@@ -55,10 +48,10 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
             background = null
             setOnItemSelectedListener {
                 when (it.itemId) {
-                    R.id.menuBook -> {
+                    R.id.menuBuku -> {
                         callFragment(0, bookFragment)
                     }
-                    R.id.menuWallet -> {
+                    R.id.menuTarget -> {
                         callFragment(1, targetsFragment)
                     }
                 }

@@ -4,6 +4,7 @@ import android.content.Context
 import com.chad.library.BuildConfig
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.cuanku.helper.AppManager
+import com.example.cuanku.network.NetworkInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,9 +32,11 @@ class AppModule {
 
     @Provides
     fun provideOkHttpClient(
-        chuckerInterceptor: ChuckerInterceptor
+        chuckerInterceptor: ChuckerInterceptor,
+        interceptor: NetworkInterceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
+            .addInterceptor(interceptor)
             .addInterceptor(if (BuildConfig.DEBUG) chuckerInterceptor else chuckerInterceptor)
             .connectTimeout(240, TimeUnit.SECONDS)
             .writeTimeout(240, TimeUnit.SECONDS)

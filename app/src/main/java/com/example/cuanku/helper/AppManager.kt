@@ -30,8 +30,12 @@ class AppManager @Inject constructor(@ApplicationContext context: Context) {
         return preference.getString(name, null)
     }
 
-    fun getToken(token: String): String? {
-        return preference.getString(token, null)
+    fun getToken(): String? {
+        return preference.getString(PREFS_TOKEN,"")
     }
+
+//    fun getToken(token: String): String? {
+//        return preference.getString(token, null)
+//    }
 
 }

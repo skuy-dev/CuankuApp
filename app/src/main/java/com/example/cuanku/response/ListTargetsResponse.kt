@@ -8,7 +8,7 @@ data class ListTargetsResponse(
     val data: ArrayList<DataListTargets>? = null,
 
     @field:SerializedName("meta")
-    val meta: Meta? = null
+    val meta: MetaListTarget? = null
 )
 
 data class MetaListTarget(

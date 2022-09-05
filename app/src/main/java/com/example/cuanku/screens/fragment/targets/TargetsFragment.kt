@@ -1,10 +1,8 @@
 package com.example.cuanku.screens.fragment.targets
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cuanku.R
@@ -13,6 +11,8 @@ import com.example.cuanku.base.NetworkResult
 import com.example.cuanku.databinding.FragmentTargetsBinding
 import com.example.cuanku.helper.AppManager
 import com.example.cuanku.response.DataListTargets
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -20,8 +20,7 @@ import javax.inject.Inject
 class TargetsFragment : BaseFragment<FragmentTargetsBinding>() {
 
     private val viewModel: TargetsViewModel by viewModels()
-
-    private var targetsAdapter = TargetsAdapter()
+    private lateinit var targetsAdapter: TargetsAdapter
 
     @Inject
     lateinit var userSession: AppManager
@@ -31,33 +30,42 @@ class TargetsFragment : BaseFragment<FragmentTargetsBinding>() {
     }
 
     override fun initialization() {
-
+        setonClickListener()
+        setupListTarget()
     }
 
     override fun observeViewModel() {
-        val token = userSession.getToken(AppManager.PREFS_TOKEN)
-        viewModel.getListTargets("Bearer $token")
+        viewModel.getListTargets()
         viewModel.listTargets.observe(viewLifecycleOwner) { response ->
-            when(response) {
+            when (response) {
                 is NetworkResult.Success -> {
                     val data = response.data?.data
                     if (!data.isNullOrEmpty()) {
-                        setupListTarget(data)
+//                        targetsAdapter.differ.submitList(data)
+                        targetsAdapter.setData(data)
                     }
                 }
             }
         }
     }
 
-    private fun setupListTarget(list: ArrayList<DataListTargets>?) {
-        targetsAdapter.apply {
-            setNewInstance(list?.toMutableList())
-        }
+    private fun setupListTarget() {
+        targetsAdapter = TargetsAdapter()
         binding.rvListTargets.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            val linearLayout = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            linearLayout.reverseLayout = true
+            linearLayout.stackFromEnd = true
+            layoutManager = linearLayout
             adapter = targetsAdapter
         }
     }
 
+
+    private fun setonClickListener() {
+        binding.btnAddTarget.setOnClickListener {
+            val dialog = AddTargetsFragment()
+            dialog.show(parentFragmentManager, "dialogaddtarget")
+        }
+    }
 
 }

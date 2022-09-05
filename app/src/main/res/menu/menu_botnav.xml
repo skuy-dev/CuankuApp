@@ -2,13 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menuBook"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="Book" />
+        android:id="@+id/menuBuku"
+        android:icon="@drawable/ic_buku"
+        android:title="Buku" />
 
     <item
-        android:id="@+id/menuWallet"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="Wallet" />
+        android:id="@+id/menuTarget"
+        android:icon="@drawable/ic_target"
+        android:title="Target" />
+
+    <item
+        android:id="@+id/menuAnalisis"
+        android:icon="@drawable/ic_analisis"
+        android:title="Target" />
+
+    <item
+        android:id="@+id/menuPengaturan"
+        android:icon="@drawable/ic_setting"
+        android:title="Target" />
 
 </menu>
