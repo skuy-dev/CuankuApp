@@ -1,5 +1,6 @@
 package com.example.cuanku.screens.fragment.targets
 
+import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +11,8 @@ import coil.load
 import com.example.cuanku.R
 import com.example.cuanku.databinding.ItemTargetsBinding
 import com.example.cuanku.helper.Constants.PATH_IMAGE
-import com.example.cuanku.helper.formatRupiah
+import com.example.cuanku.helper.convertToRupiah
 import com.example.cuanku.response.DataListTargets
-import java.util.*
 
 class TargetsAdapter(
     private val listener: OnItemClickListener
@@ -56,8 +56,15 @@ class TargetsAdapter(
             binding.run {
                 txtNamaTarget.text = data.name
                 txtDuration.text = "Target Tercapai ${data.duration}"
-                txtNominal.text = formatRupiah(data.nominal?.toDouble())
+                txtNominal.text = convertToRupiah(data.nominal?.toDouble())
+                txtCountdown.text = "${data.duration} Bulan Lagi !"
                 imgTarget.load(PATH_IMAGE + data.image_url)
+                val kakumpul =  data.remaining?.let { data.nominal?.minus(it) }
+                txtTerkumpul.text = convertToRupiah(kakumpul?.toDouble())
+                val percentage = (kakumpul!!.toDouble() / data.nominal!! * 100).toInt()
+                txtPersentase.text = "$percentage%"
+                progressBar.progress = percentage
+
                 itemView.setOnClickListener {
                     listener.onItemClicked(data)
                 }

@@ -63,9 +63,13 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding>() {
 
     private fun setOnClickListener() {
         binding.fab.setOnClickListener {
-            val dialog = DashboardDialogFragment()
-            dialog.show(supportFragmentManager, "dialog")
+           showDialog()
         }
+    }
+
+    private fun showDialog() {
+        val dialog = DashboardDialogFragment(this)
+        dialog.show(supportFragmentManager, "dialog")
     }
 
     private fun callFragment(position: Int, fragment: Fragment) {

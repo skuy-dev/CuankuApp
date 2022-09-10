@@ -1,5 +1,6 @@
 package com.example.cuanku.screens.activity.dashboard
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class DashboardDialogFragment : BottomSheetDialogFragment() {
+class DashboardDialogFragment(context: Context) : BottomSheetDialogFragment() {
 
     private var _binding: FragmentDashboardDialogBinding? = null
     private val binding get() = _binding!!
@@ -39,7 +40,7 @@ class DashboardDialogFragment : BottomSheetDialogFragment() {
     private fun setOnClickListener() {
         binding.btnTarget.setOnClickListener {
             startActivity(Intent(context, AddTargetActivity::class.java))
-//            dismiss()
+            dismissAllowingStateLoss()
         }
     }
 

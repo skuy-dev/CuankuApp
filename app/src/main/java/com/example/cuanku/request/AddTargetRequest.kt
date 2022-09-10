@@ -1,9 +1,11 @@
 package com.example.cuanku.request
 
+import java.io.File
+
 data class AddTargetRequest(
     val name: String? = null,
     val duration: String? = null,
-    val images_url: String? = null,
-    val remaining: Int? = 0,
+    val remaining: String? = null,
+    val image_url: File? = null,
     val nominal: Int? = 0
 )

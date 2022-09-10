@@ -1,33 +1,41 @@
 package com.example.cuanku.screens.activity.targets.detail
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cuanku.R
 import com.example.cuanku.databinding.ItemHistoryTargetBinding
-import com.example.cuanku.response.DataItem
+import com.example.cuanku.helper.convertDate
+import com.example.cuanku.helper.convertToRupiah
 import com.example.cuanku.response.UserTargetsItem
 
 class DetailTargetAdapter : RecyclerView.Adapter<DetailTargetAdapter.ViewHolder>() {
 
-    private val differCallback = object : DiffUtil.ItemCallback<UserTargetsItem>() {
-        override fun areItemsTheSame(oldItem: UserTargetsItem, newItem: UserTargetsItem): Boolean {
-            return oldItem.id == newItem.id
-        }
+//    private val differCallback = object : DiffUtil.ItemCallback<UserTargetsItem>() {
+//        override fun areItemsTheSame(oldItem: UserTargetsItem, newItem: UserTargetsItem): Boolean {
+//            return oldItem.id == newItem.id
+//        }
+//
+//        override fun areContentsTheSame(
+//            oldItem: UserTargetsItem,
+//            newItem: UserTargetsItem
+//        ): Boolean {
+//            return oldItem == newItem
+//        }
+//
+//    }
+//
+//    val differ = AsyncListDiffer(this, differCallback)
 
-        override fun areContentsTheSame(
-            oldItem: UserTargetsItem,
-            newItem: UserTargetsItem
-        ): Boolean {
-            return oldItem == newItem
-        }
-
+    var list = ArrayList<UserTargetsItem>()
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(list: ArrayList<UserTargetsItem>) {
+        this.list = list
+        notifyDataSetChanged()
+//        notifyItemChanged(0, list.size)
     }
-
-    val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -36,11 +44,13 @@ class DetailTargetAdapter : RecyclerView.Adapter<DetailTargetAdapter.ViewHolder>
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindData(differ.currentList[position])
+//        holder.bindData(differ.currentList[position])
+        holder.bindData(list[position])
     }
 
     override fun getItemCount(): Int {
-        return differ.currentList.size
+//        return differ.currentList.size
+        return list.size
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -48,8 +58,8 @@ class DetailTargetAdapter : RecyclerView.Adapter<DetailTargetAdapter.ViewHolder>
 
         fun bindData(data: UserTargetsItem?) {
             binding.run {
-                txtTanggal.text = data?.createdAt
-                txtNominal.text = data?.nominal.toString()
+                txtTanggal.text = convertDate(data?.createdAt)
+                txtNominal.text = convertToRupiah(data?.nominal?.toDouble())
             }
         }
 

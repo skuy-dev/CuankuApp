@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.example.cuanku.utils.LoadingDialog
 
-abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity(), BaseView {
 
     protected lateinit var binding: VB
 
     protected abstract fun setLayout(inflater: LayoutInflater): VB
+
+    private var loading: LoadingDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,18 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     private fun getInflatedLayout(): View {
         binding = setLayout(layoutInflater)
         return binding.root
+    }
+
+    override fun showLoading() {
+        if (loading == null)
+            loading = LoadingDialog()
+
+        loading?.show(supportFragmentManager, "LOADING_DIALOG")
+
+    }
+
+    override fun dismissLoading() {
+        loading?.dismissAllowingStateLoss()
     }
 
 }

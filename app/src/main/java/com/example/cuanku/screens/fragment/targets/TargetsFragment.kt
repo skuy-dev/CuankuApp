@@ -2,6 +2,8 @@ package com.example.cuanku.screens.fragment.targets
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cuanku.base.BaseFragment
@@ -29,6 +31,7 @@ class TargetsFragment : BaseFragment<FragmentTargetsBinding>(), TargetsAdapter.O
 
     override fun initialization() {
         setupListTarget()
+        swiperefreshLayout()
     }
 
     override fun observeViewModel() {
@@ -39,20 +42,34 @@ class TargetsFragment : BaseFragment<FragmentTargetsBinding>(), TargetsAdapter.O
                     val data = response.data?.data
                     if (!data.isNullOrEmpty()) {
                         targetsAdapter.differ.submitList(data)
+
                     }
+                }
+                is NetworkResult.Loading -> {
+                    binding.shimmerListTarget.root.startShimmerAnimation()
                 }
             }
         }
     }
 
+    private fun swiperefreshLayout() {
+        binding.swipeRefresh.setOnRefreshListener {
+            observeViewModel()
+            targetsAdapter.differ.currentList.size
+            binding.swipeRefresh.isRefreshing = false
+        }
+    }
+
     private fun setupListTarget() {
         targetsAdapter = TargetsAdapter(this@TargetsFragment)
+        binding.shimmerListTarget.root.visibility = GONE
         binding.rvListTargets.apply {
             val linearLayout = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             linearLayout.reverseLayout = true
             linearLayout.stackFromEnd = true
             layoutManager = linearLayout
             adapter = targetsAdapter
+            visibility = VISIBLE
         }
     }
 
@@ -62,5 +79,11 @@ class TargetsFragment : BaseFragment<FragmentTargetsBinding>(), TargetsAdapter.O
                 .putExtra("TARGET", data)
         )
     }
+
+    override fun onResume() {
+        super.onResume()
+        swiperefreshLayout()
+    }
+
 
 }

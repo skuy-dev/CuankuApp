@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/txtTitleName" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnImageTarget"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -86,5 +86,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edtHarga" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

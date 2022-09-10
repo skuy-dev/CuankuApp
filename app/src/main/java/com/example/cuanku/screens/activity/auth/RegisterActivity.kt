@@ -31,7 +31,8 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
                 is NetworkResult.Success -> {
                     val data = response.data?.meta?.code
                     if (data == 200) {
-                        startActivity(Intent(this, DashboardActivity::class.java))
+                        startActivity(Intent(this, LoginActivity::class.java))
+                        finish()
                     }
                 }
                 is NetworkResult.Loading -> {
