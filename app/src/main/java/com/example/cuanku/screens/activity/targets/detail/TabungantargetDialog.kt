@@ -27,7 +27,8 @@ import org.greenrobot.eventbus.EventBus
 
 @AndroidEntryPoint
 class TabungantargetDialog(
-    private val id: Int? = null
+    private val id: Int? = null,
+    private val listener: OnItemClickListener
 ) : BottomSheetDialogFragment() {
 
     private val viewModel: TargetsViewModel by viewModels()
@@ -61,7 +62,7 @@ class TabungantargetDialog(
                     val data = response.data?.meta?.code
                     if (data == 200) {
                         dismissLoading()
-                        EventBus.getDefault().post(RefreshOnResumeEvent(true))
+                        listener.onItemClicked()
                         Toast.makeText(context, "Data Berhasil Ditambahkan", Toast.LENGTH_SHORT)
                             .show()
                         dismissAllowingStateLoss()
@@ -104,6 +105,10 @@ class TabungantargetDialog(
 
     private fun dismissLoading() {
         loading?.dismissAllowingStateLoss()
+    }
+
+    interface OnItemClickListener {
+        fun onItemClicked()
     }
 
 }

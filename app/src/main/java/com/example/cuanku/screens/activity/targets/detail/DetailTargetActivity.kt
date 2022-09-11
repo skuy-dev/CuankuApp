@@ -24,7 +24,8 @@ import org.greenrobot.eventbus.EventBus
 
 
 @AndroidEntryPoint
-class DetailTargetActivity : BaseActivity<ActivityDetailTargetBinding>() {
+class DetailTargetActivity : BaseActivity<ActivityDetailTargetBinding>(),
+    TabungantargetDialog.OnItemClickListener {
 
     private val viewModel: TargetsViewModel by viewModels()
 
@@ -37,17 +38,22 @@ class DetailTargetActivity : BaseActivity<ActivityDetailTargetBinding>() {
     }
 
     override fun initialization() {
-        getData()
+        getDataIntent()
         setupHistoryTarget()
         setOnClickListener()
         swiperefreshLayout()
     }
 
-    private fun getData() {
+    private fun getDataIntent() {
         target = intent.getParcelableExtra("TARGET")
     }
 
     override fun observeViewModel() {
+        getData()
+    }
+
+
+    private fun getData() {
         viewModel.getDetailTarget(target?.id)
         viewModel.detailTarget.observe(this) { response ->
             when (response) {
@@ -73,6 +79,7 @@ class DetailTargetActivity : BaseActivity<ActivityDetailTargetBinding>() {
             }
         }
     }
+
 
     private fun swiperefreshLayout() {
         binding.swipeRefresh.setOnRefreshListener {
@@ -113,7 +120,7 @@ class DetailTargetActivity : BaseActivity<ActivityDetailTargetBinding>() {
 
     private fun setOnClickListener() {
         binding.btnAddTabunganTarget.setOnClickListener {
-            val dialog = TabungantargetDialog(target?.id)
+            val dialog = TabungantargetDialog(target?.id, this)
             dialog.show(supportFragmentManager, "TABUNGANTARGET")
             swiperefreshLayout()
         }
@@ -122,6 +129,10 @@ class DetailTargetActivity : BaseActivity<ActivityDetailTargetBinding>() {
     override fun onRestart() {
         super.onRestart()
         setOnClickListener()
+    }
+
+    override fun onItemClicked() {
+        getData()
     }
 
 }
