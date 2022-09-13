@@ -3,20 +3,14 @@ package com.example.cuanku.repository
 import com.example.cuanku.base.BaseApiResponse
 import com.example.cuanku.base.NetworkResult
 import com.example.cuanku.request.AddTabunganTargetRequest
-import com.example.cuanku.request.AddTargetRequest
-import com.example.cuanku.response.AddTabunganTargetResponse
-import com.example.cuanku.response.AddTargetResponse
-import com.example.cuanku.response.DetailTargetResponse
-import com.example.cuanku.response.ListTargetsResponse
+import com.example.cuanku.response.*
 import com.example.cuanku.source.TargetsDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import okhttp3.MultipartBody
-import okhttp3.Request
 import okhttp3.RequestBody
-import retrofit2.http.Part
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -32,14 +26,6 @@ class TargetsRepository @Inject constructor(private val dataSource: TargetsDataS
         }.flowOn(Dispatchers.IO)
     }
 
-    //    suspend fun addTargets(request: AddTargetRequest): Flow<NetworkResult<AddTargetResponse>> {
-//        return flow {
-//            emit(NetworkResult.Loading())
-//            emit(safeApiCall {
-//                dataSource.addTargets(request)
-//            })
-//        }.flowOn(Dispatchers.IO)
-//    }
     suspend fun addTargets(
         file: MultipartBody.Part,
         name: RequestBody,
@@ -54,23 +40,6 @@ class TargetsRepository @Inject constructor(private val dataSource: TargetsDataS
             })
         }.flowOn(Dispatchers.IO)
     }
-
-//    suspend fun addTargets(
-//        name: MultipartBody.Part,
-//        duration: MultipartBody.Part,
-//        remaining: MultipartBody.Part,
-//        image: MultipartBody.Part,
-//        nominal: MultipartBody.Part
-//    ): Flow<NetworkResult<AddTargetResponse>> {
-//        return flow {
-//            emit(NetworkResult.Loading())
-//            emit(safeApiCall {
-//                dataSource.addTargets(
-//                    name, duration, remaining, image, nominal
-//                )
-//            })
-//        }.flowOn(Dispatchers.IO)
-//    }
 
     suspend fun getDetailTarget(id: Int?): Flow<NetworkResult<DetailTargetResponse>> {
         return flow {
@@ -88,6 +57,33 @@ class TargetsRepository @Inject constructor(private val dataSource: TargetsDataS
                 dataSource.addTabunganTarget(request)
             })
         }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getDoneTarget(): Flow<NetworkResult<ListDoneTargetResponse>> {
+        return flow {
+            emit(NetworkResult.Loading())
+            emit(safeApiCall {
+                dataSource.getDoneTarget()
+            })
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun toDoneTarget(id: Int?): Flow<NetworkResult<ToDoneTargetResponse>> {
+        return flow {
+            emit(NetworkResult.Loading())
+            emit(safeApiCall {
+                dataSource.toDoneTarget(id)
+            })
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun deleteTarget(id: Int?): Flow<NetworkResult<MetaResponse>> {
+        return flow {
+            emit(NetworkResult.Loading())
+            emit(safeApiCall {
+                dataSource.deleteTarget(id)
+            })
+        }
     }
 
 }

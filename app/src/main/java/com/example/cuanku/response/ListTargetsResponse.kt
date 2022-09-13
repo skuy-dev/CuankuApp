@@ -50,5 +50,11 @@ data class DataListTargets(
     val id: Int? = null,
 
     @field:SerializedName("remaining")
-    val remaining: Int? = null
-): Parcelable
+    val remaining: Int? = null,
+
+    @field:SerializedName("status")
+    val status: Int? = null,
+
+    @field:SerializedName("count_day")
+    val count_day: Int? = 0,
+) : Parcelable

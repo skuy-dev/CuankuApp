@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.example.cuanku.utils.LoadingDialog
 
-abstract class BaseFragment<VB : ViewBinding> : Fragment() {
+abstract class BaseFragment<VB : ViewBinding> : Fragment(), BaseView {
 
     protected lateinit var binding: VB
     protected abstract fun setLayout(inflater: LayoutInflater): VB
+
+    private var loading: LoadingDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +37,19 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     private fun getInflatedLayout(layoutInflater: LayoutInflater): View {
         binding = setLayout(layoutInflater)
         return binding.root
+    }
+
+
+    override fun showLoading() {
+        if (loading == null)
+            loading = LoadingDialog()
+
+        loading?.show(parentFragmentManager, "LOADING_DIALOG")
+
+    }
+
+    override fun dismissLoading() {
+        loading?.dismissAllowingStateLoss()
     }
 
 }

@@ -4,7 +4,8 @@ import com.example.cuanku.helper.SingleEvent
 
 sealed class NetworkResult<T>(
     val data: T? = null,
-    val message: SingleEvent<String>? = null
+    val message: SingleEvent<String>? = null,
+    val meta: Meta? = null
 ) {
 
     class Success<T>(data: T?) : NetworkResult<T>(data)

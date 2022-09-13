@@ -44,7 +44,7 @@ data class LoginData(
     val token: String? = null
 )
 
-data class Meta(
+data class MetaLogin(
 
     @field:SerializedName("code")
     val code: Int? = null,

@@ -8,4 +8,15 @@
 
     <string name="loading.dialog">Mohon Tunggu Sebentar</string>
 
+    <!--    Tittle-->
+    <string name="title.delete">Delete</string>
+
+    <!--    Message-->
+    <string name="msg.delete">Apakah anda yakin ingin menghapusnya ?</string>
+
+    <!--    Dialog-->
+    <string name="dlg.delete">Delete</string>
+    <string name="dlg.cancel">Cancel</string>
+
+
 </resources>

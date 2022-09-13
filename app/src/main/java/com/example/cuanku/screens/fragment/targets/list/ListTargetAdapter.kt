@@ -1,6 +1,5 @@
-package com.example.cuanku.screens.fragment.targets
+package com.example.cuanku.screens.fragment.targets.list
 
-import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +13,10 @@ import com.example.cuanku.helper.Constants.PATH_IMAGE
 import com.example.cuanku.helper.convertToRupiah
 import com.example.cuanku.response.DataListTargets
 
-class TargetsAdapter(
-    private val listener: OnItemClickListener
-) : RecyclerView.Adapter<TargetsAdapter.ViewHolder>() {
+class ListTargetAdapter(
+    private val listener: OnItemClickListener,
+    private val listenerDelete: OnDeleteListener
+) : RecyclerView.Adapter<ListTargetAdapter.ViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<DataListTargets>() {
 
@@ -57,7 +57,7 @@ class TargetsAdapter(
                 txtNamaTarget.text = data.name
                 txtDuration.text = "Target Tercapai ${data.duration}"
                 txtNominal.text = convertToRupiah(data.nominal?.toDouble())
-                txtCountdown.text = "${data.duration} Bulan Lagi !"
+                txtCountdown.text = "${data.count_day} Hari Lagi !"
                 imgTarget.load(PATH_IMAGE + data.image_url)
                 val kakumpul =  data.remaining?.let { data.nominal?.minus(it) }
                 txtTerkumpul.text = convertToRupiah(kakumpul?.toDouble())
@@ -68,9 +68,17 @@ class TargetsAdapter(
                 itemView.setOnClickListener {
                     listener.onItemClicked(data)
                 }
+
+                btnDelete.setOnClickListener {
+                    listenerDelete.onDeleteClicked(data)
+                }
             }
         }
 
+    }
+
+    interface OnDeleteListener {
+        fun onDeleteClicked(data: DataListTargets)
     }
 
     interface OnItemClickListener {

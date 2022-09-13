@@ -45,6 +45,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                         startActivity(Intent(this, DashboardActivity::class.java))
                     }
                 }
+                else -> {}
             }
         }
     }

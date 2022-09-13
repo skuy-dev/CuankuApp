@@ -8,22 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import com.example.cuanku.R
 import com.example.cuanku.base.NetworkResult
 import com.example.cuanku.databinding.DialogTabungantargetBinding
-import com.example.cuanku.databinding.FragmentDashboardDialogBinding
-import com.example.cuanku.helper.RefreshOnResumeEvent
 import com.example.cuanku.request.AddTabunganTargetRequest
-import com.example.cuanku.response.DataListTargets
-import com.example.cuanku.response.DetailTargetResponse
 import com.example.cuanku.screens.activity.targets.TargetsViewModel
-import com.example.cuanku.screens.fragment.targets.TargetsFragment
 import com.example.cuanku.utils.LoadingDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import org.greenrobot.eventbus.EventBus
 
 @AndroidEntryPoint
 class TabungantargetDialog(
@@ -72,6 +65,7 @@ class TabungantargetDialog(
                 is NetworkResult.Loading -> {
                     showLoading()
                 }
+                else -> {}
             }
         }
     }

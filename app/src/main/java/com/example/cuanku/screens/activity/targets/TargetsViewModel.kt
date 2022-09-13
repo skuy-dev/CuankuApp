@@ -7,16 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.cuanku.base.NetworkResult
 import com.example.cuanku.repository.TargetsRepository
 import com.example.cuanku.request.AddTabunganTargetRequest
-import com.example.cuanku.request.AddTargetRequest
-import com.example.cuanku.response.AddTabunganTargetResponse
-import com.example.cuanku.response.AddTargetResponse
-import com.example.cuanku.response.DetailTargetResponse
-import com.example.cuanku.response.ListTargetsResponse
-import com.example.cuanku.screens.activity.targets.detail.DetailTargetActivity
+import com.example.cuanku.response.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
-import okhttp3.Request
 import okhttp3.RequestBody
 import javax.inject.Inject
 
@@ -37,13 +31,6 @@ class TargetsViewModel @Inject constructor(private val repository: TargetsReposi
     private val _addTarget = MutableLiveData<NetworkResult<AddTargetResponse>>()
     val addTarget: LiveData<NetworkResult<AddTargetResponse>> = _addTarget
 
-//    fun addTarget(request: AddTargetRequest) = viewModelScope.launch {
-//        repository.addTargets(request)
-//            .collect {
-//                _addTarget.value = it
-//            }
-//    }
-
     fun addTarget(
         file: MultipartBody.Part,
         name: RequestBody,
@@ -57,20 +44,6 @@ class TargetsViewModel @Inject constructor(private val repository: TargetsReposi
             }
     }
 
-//    fun addTarget(
-//        name: MultipartBody.Part,
-//        duration: MultipartBody.Part,
-//        remaining: MultipartBody.Part,
-//        image: MultipartBody.Part,
-//        nominal: MultipartBody.Part
-//    ) = viewModelScope.launch {
-//        repository.addTargets(
-//            name, duration, remaining, image, nominal
-//        )
-//            .collect {
-//                _addTarget.value = it
-//            }
-//    }
 
     private val _detailTarget = MutableLiveData<NetworkResult<DetailTargetResponse>>()
     val detailTarget: LiveData<NetworkResult<DetailTargetResponse>> = _detailTarget
@@ -91,5 +64,36 @@ class TargetsViewModel @Inject constructor(private val repository: TargetsReposi
                 _addTabunganTarget.value = it
             }
     }
+
+    private val _listdoneTarget = MutableLiveData<NetworkResult<ListDoneTargetResponse>>()
+    val listdoneTarget: LiveData<NetworkResult<ListDoneTargetResponse>> = _listdoneTarget
+
+    fun getListdoneTarget() = viewModelScope.launch {
+        repository.getDoneTarget()
+            .collect {
+                _listdoneTarget.value = it
+            }
+    }
+
+    private val _toDoneTarget = MutableLiveData<NetworkResult<ToDoneTargetResponse>>()
+    val toDoneTarget: LiveData<NetworkResult<ToDoneTargetResponse>> = _toDoneTarget
+
+    fun toDoneTarget(id: Int?) = viewModelScope.launch {
+        repository.toDoneTarget(id)
+            .collect {
+                _toDoneTarget.value = it
+            }
+    }
+
+    private val _deleteTarget = MutableLiveData<NetworkResult<MetaResponse>>()
+    val deleteTarget: LiveData<NetworkResult<MetaResponse>> = _deleteTarget
+
+    fun deleteTarget(id: Int?) = viewModelScope.launch {
+        repository.deleteTarget(id)
+            .collect {
+                _deleteTarget.value = it
+            }
+    }
+
 
 }

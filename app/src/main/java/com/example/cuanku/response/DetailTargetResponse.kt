@@ -26,7 +26,7 @@ data class UserTargetsItem(
     val targetId: Int? = null,
 
     @field:SerializedName("id")
-    val id: Int? = null
+    val id: Int? = null,
 )
 
 data class MetaDetailTarget(
@@ -68,5 +68,13 @@ data class DataItem(
     val id: Int? = null,
 
     @field:SerializedName("remaining")
-    val remaining: Int? = null
+    val remaining: Int? = null,
+
+    @field:SerializedName("status")
+    val status: Int? = null,
+
+    @field:SerializedName("count_day")
+    val count_day: Int? = 0,
+
+
 )
