@@ -5,19 +5,14 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
-import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.cuanku.base.BaseActivity
 import com.example.cuanku.base.NetworkResult
 import com.example.cuanku.databinding.ActivityAddTargetBinding
 import com.example.cuanku.screens.activity.targets.TargetsViewModel
-import com.example.cuanku.screens.fragment.targets.TargetsFragment
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -33,7 +28,8 @@ class AddTargetActivity : BaseActivity<ActivityAddTargetBinding>() {
     private val viewModel: TargetsViewModel by viewModels()
 
     private lateinit var resultUri: Uri
-    private lateinit var test: File
+    private lateinit var resultFile: File
+    private lateinit var resultDate: String
 
     companion object {
         private const val GALLERY_IMAGE_REQ_CODE = 102
@@ -82,16 +78,15 @@ class AddTargetActivity : BaseActivity<ActivityAddTargetBinding>() {
 
         val mediaType = ("multipart/form-data").toMediaTypeOrNull()
 
-//        val file = test
-        val requestImageFile = test.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+        val requestImageFile = resultFile.asRequestBody("multipart/form-data".toMediaTypeOrNull())
         val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
             "image_url",
-            test.name,
+            resultFile.name,
             requestImageFile
         )
 
         val name = binding.edtNameTarget.text.toString().toRequestBody(mediaType)
-        val duration = binding.edtDate.text.toString().toRequestBody(mediaType)
+        val duration = resultDate.toRequestBody(mediaType)
         val remaining = binding.edtHarga.text.toString().toRequestBody(mediaType)
         val nominal = binding.edtHarga.value.toString().toRequestBody(mediaType)
 
@@ -145,17 +140,16 @@ class AddTargetActivity : BaseActivity<ActivityAddTargetBinding>() {
         val day = cal.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(
-            this@AddTargetActivity, { _, myear, mmonth, mdayOfMonth ->
-
-                val simpleDateFormat =
-                    SimpleDateFormat("EEEE, d MMMM yy", Locale.getDefault())
-                simpleDateFormat.timeZone = TimeZone.getTimeZone("UTC")
-                val date = Date(myear, mmonth, mdayOfMonth)
-                val dayString = simpleDateFormat.format(date)
-                binding.edtDate.text = dayString
+            this@AddTargetActivity, { _, _, _, _ ->
+                val format = "yyyy-MM-dd"
+                val sdf = SimpleDateFormat(format, Locale.getDefault())
+                resultDate = sdf.format(cal.time)
+                val sdfConvert = SimpleDateFormat("E, dd MMMM yyyy", Locale.getDefault())
+                binding.edtDate.text = sdfConvert.format(cal.time)
             },
             year, month, day
         )
+
         datePickerDialog.datePicker.minDate = System.currentTimeMillis()
         datePickerDialog.show()
     }
@@ -167,7 +161,7 @@ class AddTargetActivity : BaseActivity<ActivityAddTargetBinding>() {
                 val uri: Uri = data?.data!!
                 resultUri = uri
                 binding.btnImageTarget.setImageURI(resultUri)
-                test = File(resultUri.path)
+                resultFile = File(resultUri.path)
             }
             ImagePicker.RESULT_ERROR -> {
                 Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()

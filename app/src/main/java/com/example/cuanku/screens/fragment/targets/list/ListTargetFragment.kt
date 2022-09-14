@@ -9,6 +9,8 @@ import android.view.View.VISIBLE
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.developer.kalert.KAlertDialog
+import com.example.cuanku.R
 import com.example.cuanku.base.BaseFragment
 import com.example.cuanku.base.NetworkResult
 import com.example.cuanku.databinding.FragmentListTargetBinding
@@ -42,7 +44,7 @@ class ListTargetFragment : BaseFragment<FragmentListTargetBinding>(),
                     val data = response.data?.meta?.code
                     if (data == 200) {
                         this.dismissLoading()
-                        getData()
+                        showSuccessConfirmationDialog()
                     }
                 }
                 is NetworkResult.Loading -> {
@@ -80,7 +82,7 @@ class ListTargetFragment : BaseFragment<FragmentListTargetBinding>(),
 
     private fun swiperefreshLayout() {
         binding.layoutRecyclerView.swipeRefresh.setOnRefreshListener {
-            observeViewModel()
+            getData()
             listTargetAdapter.differ.currentList.size
             binding.layoutRecyclerView.swipeRefresh.isRefreshing = false
         }
@@ -111,8 +113,40 @@ class ListTargetFragment : BaseFragment<FragmentListTargetBinding>(),
     }
 
     override fun onDeleteClicked(data: DataListTargets) {
-        viewModel.deleteTarget(data.id)
-        Log.e("DELETEID", "onDeleteClicked: ${data.id}")
+        KAlertDialog(context, KAlertDialog.CUSTOM_IMAGE_TYPE, 0)
+            .setTitleText("Delete")
+            .setContentText("Apakah anda sudah tidak menginginkan ${data.name} ?")
+            .setConfirmText("Delete")
+            .setCustomImage(R.drawable.ic_delete, context)
+            .cancelButtonColor(R.drawable.background_btnblue, context)
+            .setCancelText(getString(R.string.dlg_cancel))
+            .setConfirmClickListener { dialog ->
+                dialog.apply {
+                    viewModel.deleteTarget(data.id)
+                    dismiss()
+//                    showSuccessConfirmationDialog(data)
+                }
+            }
+            .setCancelClickListener { dialog ->
+                dialog.apply {
+                    cancel()
+                }
+            }
+            .show()
+    }
+
+    private fun showSuccessConfirmationDialog() {
+        KAlertDialog(context, KAlertDialog.SUCCESS_TYPE, 0)
+            .setTitleText("Dihapus")
+            .setConfirmText("Selesai")
+            .confirmButtonColor(R.drawable.background_btnblue, context)
+            .setConfirmClickListener { dialog ->
+                dialog.apply {
+                    getData()
+                    cancel()
+                }
+            }.show()
+
     }
 
 }
