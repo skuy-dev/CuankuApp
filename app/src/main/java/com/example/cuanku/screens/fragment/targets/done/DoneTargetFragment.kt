@@ -24,7 +24,7 @@ class DoneTargetFragment : BaseFragment<FragmentDoneTargetBinding>() {
     }
 
     override fun initialization() {
-        swiperefreshLayout()
+//        swiperefreshLayout()
         setupListTarget()
     }
 
@@ -52,13 +52,13 @@ class DoneTargetFragment : BaseFragment<FragmentDoneTargetBinding>() {
         }
     }
 
-    private fun swiperefreshLayout() {
-        binding.layoutRecyclerView.swipeRefresh.setOnRefreshListener {
-            observeViewModel()
-            donetargetAdapter.differ.currentList.size
-            binding.layoutRecyclerView.swipeRefresh.isRefreshing = false
-        }
-    }
+//    private fun swiperefreshLayout() {
+//        binding.layoutRecyclerView.swipeRefresh.setOnRefreshListener {
+//            observeViewModel()
+//            donetargetAdapter.differ.currentList.size
+//            binding.layoutRecyclerView.swipeRefresh.isRefreshing = false
+//        }
+//    }
 
     private fun setupListTarget() {
         donetargetAdapter = DoneTargetAdapter()

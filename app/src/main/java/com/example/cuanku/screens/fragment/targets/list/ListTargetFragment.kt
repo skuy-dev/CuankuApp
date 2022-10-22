@@ -1,10 +1,8 @@
 package com.example.cuanku.screens.fragment.targets.list
 
+import android.app.Activity
 import android.content.Intent
-import android.net.Network
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -14,11 +12,12 @@ import com.example.cuanku.R
 import com.example.cuanku.base.BaseFragment
 import com.example.cuanku.base.NetworkResult
 import com.example.cuanku.databinding.FragmentListTargetBinding
-import com.example.cuanku.databinding.FragmentTargetsBinding
-import com.example.cuanku.response.DataListTargets
+import com.example.cuanku.response.ListTargetItem
 import com.example.cuanku.screens.activity.targets.TargetsViewModel
+import com.example.cuanku.screens.activity.targets.add.AddTargetActivity
 import com.example.cuanku.screens.activity.targets.detail.DetailTargetActivity
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class ListTargetFragment : BaseFragment<FragmentListTargetBinding>(),
@@ -33,7 +32,8 @@ class ListTargetFragment : BaseFragment<FragmentListTargetBinding>(),
 
     override fun initialization() {
         setupListTarget()
-        swiperefreshLayout()
+        onClickListener()
+//        swiperefreshLayout()
     }
 
     override fun observeViewModel() {
@@ -64,10 +64,12 @@ class ListTargetFragment : BaseFragment<FragmentListTargetBinding>(),
                     val data = response.data?.data
                     if (!data.isNullOrEmpty()) {
                         this.dismissLoading()
-                        listTargetAdapter.differ.submitList(data)
+//                        listTargetAdapter.differ.submitList(data)
+                        listTargetAdapter.setData(data)
                         binding.layoutRecyclerView.root.isVisible = true
                     } else {
-                        binding.layoutEmpty.root.isVisible = true
+                        this.dismissLoading()
+//                        binding.layoutEmpty.root.isVisible = true
                     }
                 }
                 is NetworkResult.Loading -> {
@@ -80,13 +82,13 @@ class ListTargetFragment : BaseFragment<FragmentListTargetBinding>(),
         }
     }
 
-    private fun swiperefreshLayout() {
-        binding.layoutRecyclerView.swipeRefresh.setOnRefreshListener {
-            getData()
-            listTargetAdapter.differ.currentList.size
-            binding.layoutRecyclerView.swipeRefresh.isRefreshing = false
-        }
-    }
+//    private fun swiperefreshLayout() {
+//        binding.layoutRecyclerView.swipeRefresh.setOnRefreshListener {
+//            getData()
+//            listTargetAdapter.differ.currentList.size
+//            binding.layoutRecyclerView.swipeRefresh.isRefreshing = false
+//        }
+//    }
 
     private fun setupListTarget() {
         listTargetAdapter = ListTargetAdapter(this@ListTargetFragment, this@ListTargetFragment)
@@ -97,22 +99,42 @@ class ListTargetFragment : BaseFragment<FragmentListTargetBinding>(),
             layoutManager = linearLayout
             adapter = listTargetAdapter
             visibility = VISIBLE
+
         }
     }
 
-    override fun onItemClicked(data: DataListTargets) {
-        startActivity(
-            Intent(context, DetailTargetActivity::class.java)
-                .putExtra("TARGET", data)
-        )
+    override fun onItemClicked(data: ListTargetItem) {
+        val intent = Intent(context, DetailTargetActivity::class.java)
+            .putExtra("TARGET", data)
+        startActivityForResult(intent, 2)
     }
 
-    override fun onResume() {
-        super.onResume()
-        getData()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+       if (requestCode == 101){
+           if (resultCode == Activity.RESULT_OK) {
+//            if (requestCode == 2) {
+               val intent = data?.getIntExtra("state", 0)
+               if (intent == 2) {
+                   getData()
+//                }
+               }
+           }
+       }
     }
 
-    override fun onDeleteClicked(data: DataListTargets) {
+    private fun onClickListener() {
+        binding.layoutRecyclerView.apply {
+            btnAddTarget.setOnClickListener {
+                val intent = Intent(context, AddTargetActivity::class.java)
+                startActivityForResult(intent, 2)
+            }
+        }
+
+
+    }
+
+    override fun onDeleteClicked(data: ListTargetItem) {
         KAlertDialog(context, KAlertDialog.CUSTOM_IMAGE_TYPE, 0)
             .setTitleText("Delete")
             .setContentText("Apakah anda sudah tidak menginginkan ${data.name} ?")
@@ -124,7 +146,6 @@ class ListTargetFragment : BaseFragment<FragmentListTargetBinding>(),
                 dialog.apply {
                     viewModel.deleteTarget(data.id)
                     dismiss()
-//                    showSuccessConfirmationDialog(data)
                 }
             }
             .setCancelClickListener { dialog ->

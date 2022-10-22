@@ -1,48 +1,17 @@
 package com.example.cuanku.response
 
-import com.google.gson.annotations.SerializedName
-
 data class AddTargetResponse(
-
-	@field:SerializedName("data")
-	val data: DataAddTarget? = null,
-
-	@field:SerializedName("meta")
-	val meta: Meta? = null
+	val meta: Meta? = null,
+	val data: AddTargetItem? = null
 )
 
-data class MetaAddTarget(
-
-	@field:SerializedName("code")
-	val code: Int? = null,
-
-	@field:SerializedName("messages")
-	val messages: String? = null
-)
-
-data class DataAddTarget(
-
-	@field:SerializedName("duration")
-	val duration: String? = null,
-
-	@field:SerializedName("nominal")
-	val nominal: Int? = null,
-
-	@field:SerializedName("updated_at")
-	val updatedAt: String? = null,
-
-	@field:SerializedName("user_id")
-	val userId: Int? = null,
-
-	@field:SerializedName("name")
+data class AddTargetItem(
+	val user_id: Int? = null,
 	val name: String? = null,
-
-	@field:SerializedName("created_at")
-	val createdAt: String? = null,
-
-	@field:SerializedName("id")
+	val nominal: Int? = null,
+	val duration: String? = null,
+	val remaining: Int? = null,
 	val id: Int? = null,
-
-	@field:SerializedName("remaining")
-	val remaining: Int? = null
+	val updated_at: String? = null,
+	val created_at: String? = null
 )

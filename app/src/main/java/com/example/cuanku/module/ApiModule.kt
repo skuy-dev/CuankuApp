@@ -1,6 +1,7 @@
 package com.example.cuanku.module
 
 import com.example.cuanku.service.AuthServiceInstance
+import com.example.cuanku.service.BookServiceInstance
 import com.example.cuanku.service.TargetsServiceInstance
 import dagger.Module
 import dagger.Provides
@@ -24,5 +25,11 @@ class ApiModule {
     fun provideTargets(
         retrofit: Retrofit
     ) = retrofit.create(TargetsServiceInstance::class.java)
+
+    @Provides
+    @Singleton
+    fun provideBook(
+        retrofit: Retrofit
+    ) = retrofit.create(BookServiceInstance::class.java)
 
 }

@@ -11,17 +11,16 @@ import com.example.cuanku.R
 import com.example.cuanku.databinding.ItemTargetsBinding
 import com.example.cuanku.helper.Constants
 import com.example.cuanku.helper.convertToRupiah
-import com.example.cuanku.response.DataItemDone
-import com.example.cuanku.response.DataListTargets
+import com.example.cuanku.response.ListTargetDoneItem
 
 class DoneTargetAdapter : RecyclerView.Adapter<DoneTargetAdapter.ViewHolder>() {
 
-    private val differCallback = object : DiffUtil.ItemCallback<DataItemDone>() {
-        override fun areItemsTheSame(oldItem: DataItemDone, newItem: DataItemDone): Boolean {
+    private val differCallback = object : DiffUtil.ItemCallback<ListTargetDoneItem>() {
+        override fun areItemsTheSame(oldItem: ListTargetDoneItem, newItem: ListTargetDoneItem): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: DataItemDone, newItem: DataItemDone): Boolean {
+        override fun areContentsTheSame(oldItem: ListTargetDoneItem, newItem: ListTargetDoneItem): Boolean {
             return oldItem == newItem
         }
     }
@@ -32,13 +31,13 @@ class DoneTargetAdapter : RecyclerView.Adapter<DoneTargetAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ItemTargetsBinding.bind(view)
 
-        fun bindData(data: DataItemDone) {
+        fun bindData(data: ListTargetDoneItem) {
             binding.run {
                 txtNamaTarget.text = data.name
                 txtDuration.text = "Target Tercapai ${data.duration}"
                 txtNominal.text = convertToRupiah(data.nominal?.toDouble())
 //                txtCountdown.text = "${data.count_day} Hari Lagi !"
-                imgTarget.load(Constants.PATH_IMAGE + data.imageUrl)
+                imgTarget.load(Constants.PATH_IMAGE + data.image_url)
                 val kakumpul = data.remaining?.let { data.nominal?.minus(it) }
                 txtTerkumpul.text = convertToRupiah(kakumpul?.toDouble())
                 val percentage = (kakumpul!!.toDouble() / data.nominal!! * 100).toInt()

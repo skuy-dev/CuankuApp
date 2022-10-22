@@ -1,5 +1,7 @@
 package com.example.cuanku.screens.activity.targets.detail
 
+import android.app.Activity
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.viewModels
@@ -13,8 +15,8 @@ import com.example.cuanku.base.NetworkResult
 import com.example.cuanku.databinding.ActivityDetailTargetBinding
 import com.example.cuanku.helper.Constants.PATH_IMAGE
 import com.example.cuanku.helper.convertToRupiah
-import com.example.cuanku.response.DataItem
-import com.example.cuanku.response.DataListTargets
+import com.example.cuanku.response.DetailTargetItem
+import com.example.cuanku.response.ListTargetItem
 import com.example.cuanku.screens.activity.targets.TargetsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +29,8 @@ class DetailTargetActivity : BaseActivity<ActivityDetailTargetBinding>(),
 
     private lateinit var detailTargetAdapter: DetailTargetAdapter
 
-    var target: DataListTargets? = null
+    var target: ListTargetItem? = null
+    var state = 1
 
     override fun setLayout(inflater: LayoutInflater): ActivityDetailTargetBinding {
         return ActivityDetailTargetBinding.inflate(inflater)
@@ -72,7 +75,7 @@ class DetailTargetActivity : BaseActivity<ActivityDetailTargetBinding>(),
                     this.dismissLoading()
                     val data = response.data?.data
                     setupView(data)
-                    val dataHistory = response.data?.data?.userTargets
+                    val dataHistory = response.data?.data?.user_targets
                     if (!dataHistory.isNullOrEmpty()) {
                         Log.e("IMAGE", "observeViewModel: $data")
 //                        detailTargetAdapter.differ.submitList(dataHistory)
@@ -89,14 +92,14 @@ class DetailTargetActivity : BaseActivity<ActivityDetailTargetBinding>(),
         }
     }
 
-    private fun setupView(data: DataItem?) {
+    private fun setupView(data: DetailTargetItem?) {
         binding.root.isVisible = true
         binding.layoutTarget.apply {
             txtNamaTarget.text = data?.name
             txtDuration.text = "Target Tercapai ${data?.duration}"
             txtNominal.text = convertToRupiah(data?.nominal?.toDouble())
             txtCountdown.text = "${data?.count_day} Hari Lagi !"
-            imgTarget.load(PATH_IMAGE + data?.imageUrl)
+            imgTarget.load(PATH_IMAGE + data?.image_url)
 
             val kakumpul = data?.remaining?.let { data.nominal?.minus(it) }
             txtTerkumpul.text = convertToRupiah(kakumpul?.toDouble())
@@ -171,12 +174,16 @@ class DetailTargetActivity : BaseActivity<ActivityDetailTargetBinding>(),
     }
 
     override fun onItemClicked() {
+        state = 2
         getData()
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        finish()
+        val intent = Intent()
+        intent.putExtra("state", state)
+        setResult(Activity.RESULT_OK, intent)
+//        finish()
     }
 
 

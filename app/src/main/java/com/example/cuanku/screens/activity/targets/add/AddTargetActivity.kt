@@ -2,11 +2,18 @@ package com.example.cuanku.screens.activity.targets.add
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
+import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.developer.kalert.KAlertDialog
+import com.example.cuanku.R
 import com.example.cuanku.base.BaseActivity
 import com.example.cuanku.base.NetworkResult
 import com.example.cuanku.databinding.ActivityAddTargetBinding
@@ -28,8 +35,8 @@ class AddTargetActivity : BaseActivity<ActivityAddTargetBinding>() {
     private val viewModel: TargetsViewModel by viewModels()
 
     private lateinit var resultUri: Uri
-    private lateinit var resultFile: File
-    private lateinit var resultDate: String
+    private var resultFile: File? = null
+    private var resultDate: String? = null
 
     companion object {
         private const val GALLERY_IMAGE_REQ_CODE = 102
@@ -50,12 +57,8 @@ class AddTargetActivity : BaseActivity<ActivityAddTargetBinding>() {
                 is NetworkResult.Success -> {
                     val data = response.data?.meta?.code
                     if (data == 200) {
-                        Toast.makeText(
-                            this,
-                            "Data Berhasil Ditambahkan",
-                            Toast.LENGTH_SHORT
-                        ).show()
                         dismissLoading()
+                        showSuccessConfirmationDialog()
                     }
                 }
                 is NetworkResult.Loading -> {
@@ -78,26 +81,34 @@ class AddTargetActivity : BaseActivity<ActivityAddTargetBinding>() {
 
         val mediaType = ("multipart/form-data").toMediaTypeOrNull()
 
-        val requestImageFile = resultFile.asRequestBody("multipart/form-data".toMediaTypeOrNull())
-        val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-            "image_url",
-            resultFile.name,
-            requestImageFile
-        )
+        val requestImageFile = resultFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+        val imageMultipart: MultipartBody.Part? = requestImageFile?.let {
+            MultipartBody.Part.createFormData(
+                "image_url",
+                resultFile?.name,
+                it
+            )
+        }
 
-        val name = binding.edtNameTarget.text.toString().toRequestBody(mediaType)
-        val duration = resultDate.toRequestBody(mediaType)
+        var testName = binding.edtNameTarget.text.toString()
+        if (TextUtils.isEmpty(testName)) {
+            Toast.makeText(this, "KOSONG", Toast.LENGTH_SHORT).show()
+        }
+
+        val name = testName.toRequestBody(mediaType)
+        val duration = resultDate.toString().toRequestBody(mediaType)
         val remaining = binding.edtHarga.text.toString().toRequestBody(mediaType)
         val nominal = binding.edtHarga.value.toString().toRequestBody(mediaType)
 
-
-        viewModel.addTarget(
-            file = imageMultipart,
-            name = name,
-            duration = duration,
-            remaining = remaining,
-            nominal = nominal,
-        )
+        if (imageMultipart != null) {
+            viewModel.addTarget(
+                file = imageMultipart,
+                name = name,
+                duration = duration,
+                remaining = remaining,
+                nominal = nominal,
+            )
+        }
     }
 
     @Suppress("UNUSED_PARAMETER")
@@ -125,33 +136,31 @@ class AddTargetActivity : BaseActivity<ActivityAddTargetBinding>() {
 
         binding.btnAddTarget.setOnClickListener {
             checkFormAddTarget()
+
+        }
+
+        val cal = Calendar.getInstance()
+        val date = OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+            cal.set(Calendar.YEAR, year)
+            cal.set(Calendar.MONTH, monthOfYear)
+            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            resultDate = sdf.format(cal.time)
+            val sdfConvert = SimpleDateFormat("E, dd-MMMM-yyyy", Locale.getDefault())
+            binding.edtDate.text = sdfConvert.format(cal.time)
         }
 
         binding.btnAddDate.setOnClickListener {
-            showDatePickerDialog()
+            DatePickerDialog(
+                this@AddTargetActivity, date,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)
+            ).apply {
+                datePicker.minDate = System.currentTimeMillis()
+                show()
+            }
         }
-
-    }
-
-    private fun showDatePickerDialog() {
-        val cal = Calendar.getInstance()
-        val year = cal.get(Calendar.YEAR)
-        val month = cal.get(Calendar.MONTH)
-        val day = cal.get(Calendar.DAY_OF_MONTH)
-
-        val datePickerDialog = DatePickerDialog(
-            this@AddTargetActivity, { _, _, _, _ ->
-                val format = "yyyy-MM-dd"
-                val sdf = SimpleDateFormat(format, Locale.getDefault())
-                resultDate = sdf.format(cal.time)
-                val sdfConvert = SimpleDateFormat("E, dd MMMM yyyy", Locale.getDefault())
-                binding.edtDate.text = sdfConvert.format(cal.time)
-            },
-            year, month, day
-        )
-
-        datePickerDialog.datePicker.minDate = System.currentTimeMillis()
-        datePickerDialog.show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -170,6 +179,26 @@ class AddTargetActivity : BaseActivity<ActivityAddTargetBinding>() {
                 Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        setResult(2)
+//        finish()
+    }
+
+    private fun showSuccessConfirmationDialog() {
+        KAlertDialog(this@AddTargetActivity, KAlertDialog.SUCCESS_TYPE, 0)
+            .setTitleText("Target")
+            .setContentText("Target berhasil ditambahkan")
+            .setConfirmText("Selesai")
+            .confirmButtonColor(R.drawable.background_btnblue, this)
+            .setConfirmClickListener { dialog ->
+                dialog.apply {
+                    finish()
+                }
+            }.show()
+
     }
 
 //    fun reduceFileImage(file: File): File {

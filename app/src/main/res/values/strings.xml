@@ -18,5 +18,11 @@
     <string name="dlg.delete">Delete</string>
     <string name="dlg.cancel">Cancel</string>
 
+    <!--    Spinner-->
+    <string-array name="type">
+        <item>Pemasukan</item>
+        <item>Pengeluaran</item>
+    </string-array>
+
 
 </resources>

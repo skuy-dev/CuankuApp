@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/menuBuku"
         android:icon="@drawable/ic_buku"
-        android:title="Buku"
-        android:enabled="true"
-        app:showAsAction="ifRoom"/>
+        android:title="Buku" />
 
     <item
         android:id="@+id/menuTarget"
         android:icon="@drawable/ic_target"
-        android:title="Target"
-        android:enabled="true" />
-    <item
-        android:title="" />
+        android:title="Target" />
 
     <item
         android:id="@+id/menuAnalisis"
         android:icon="@drawable/ic_analisis"
         android:title="Target"
-        android:enabled="true" />
+        app:cnb_iconColor="@color/black"/>
 
     <item
         android:id="@+id/menuPengaturan"
         android:icon="@drawable/ic_setting"
-        android:title="Target" />
+        android:title="Target"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_iconColor="@color/main_blue"
+        app:cnb_backgroundColor="@color/white"
+        />
 
 </menu>

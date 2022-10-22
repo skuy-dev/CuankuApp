@@ -58,7 +58,7 @@ class DetailTargetAdapter : RecyclerView.Adapter<DetailTargetAdapter.ViewHolder>
 
         fun bindData(data: UserTargetsItem?) {
             binding.run {
-                txtTanggal.text = convertDate(data?.createdAt)
+                txtTanggal.text = convertDate(data?.created_at)
                 txtNominal.text = convertToRupiah(data?.nominal?.toDouble())
             }
         }

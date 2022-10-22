@@ -9,44 +9,24 @@
     <FrameLayout
         android:id="@+id/flContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="55dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/botNav"/>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/botNav"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:backgroundTint="#5B8BDF"
-            app:fabCradleMargin="10dp"
-            app:fabCradleRoundedCornerRadius="10dp"
-            app:fabCradleVerticalOffset="10dp"
-            app:layout_anchorGravity="center">
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/botNav"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                app:menu="@menu/menu_botnav" />
-
-        </com.google.android.material.bottomappbar.BottomAppBar>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/app_name"
-            app:layout_anchor="@id/bottomAppBar" />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        android:layout_height="70dp"
+        android:background="@color/green_medium"
+        app:cnb_badgeColor="@color/white"
+        app:cnb_menuResource="@menu/menu_botnav"
+        app:cnb_unselectedColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/flContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

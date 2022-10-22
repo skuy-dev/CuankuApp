@@ -3,23 +3,51 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/drawable/background_btnblue.xml" value="0.1" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/drawable/background_btnred.xml" value="0.1" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/drawable/background_gradient.xml" value="0.1" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/drawable/bg_date_rounded_green.xml" value="0.1" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/drawable/bg_edt_rounded_blue.xml" value="0.1" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/drawable/bg_rounded.xml" value="0.148" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/drawable/bg_top_radius.xml" value="0.1" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/drawable/ic_delete.xml" value="0.1" />
-        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/activity_add_target.xml" value="0.14266304347826086" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/drawable/ic_icon.xml" value="0.1" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/drawable/ic_up.xml" value="0.148" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/drawable/img_placeholder.xml" value="0.1" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/activity_add_book.xml" value="0.2" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/activity_add_kategori.xml" value="0.10778985507246377" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/activity_add_target.xml" value="0.22" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/activity_dashboard.xml" value="0.16666666666666666" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/activity_detail_target.xml" value="0.16666666666666666" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/activity_kategori_book.xml" value="0.1" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/activity_list_kategori.xml" value="0.10778985507246377" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/activity_login.xml" value="0.13043478260869565" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.2" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/add_book_daily_dialog.xml" value="0.11322463768115942" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/bg_button_blue.xml" value="0.11005434782608696" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/dialog_add_book_daily.xml" value="0.22" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/dialog_kategoribook.xml" value="0.1" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/dialog_tabungantarget.xml" value="0.1" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/fragment_book.xml" value="0.22" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/fragment_done_target.xml" value="0.14266304347826086" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/fragment_list_target.xml" value="0.1" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/fragment_targets.xml" value="0.10054347826086957" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/item_book_child.xml" value="0.22" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/item_book_parent.xml" value="0.22" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/item_history_target.xml" value="0.1796875" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/item_kategori_book.xml" value="0.22" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/item_targets.xml" value="0.22" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/loading_dialog.xml" value="0.1453804347826087" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/shimmer_target.xml" value="0.1" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/view_button.xml" value="0.11005434782608696" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/view_data_empty.xml" value="0.16666666666666666" />
-        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/view_list_target.xml" value="0.1453804347826087" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/view_form_auth.xml" value="0.1" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/view_list_target.xml" value="0.1" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/view_recommendation.xml" value="0.3333333333333333" />
         <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/view_target.xml" value="0.1796875" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/layout/view_total.xml" value="0.22" />
+        <entry key="..\:/Ngodinglier/Android Studio/Project/CuankuApp/app/src/main/res/menu/menu_botnav.xml" value="0.2" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/drawable/background_gradient.xml" value="0.16666666666666666" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/drawable/bg_rounded.xml" value="0.105" />
         <entry key="..\:/Ngodinglier/Kotlin/Tester/Cuanku/app/src/main/res/drawable/bg_top_radius.xml" value="0.16666666666666666" />
@@ -62,7 +90,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.1" />
+        <option name="scale" value="0.3333333333333333" />
       </ProjectState>
     </option>
   </component>

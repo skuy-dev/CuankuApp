@@ -61,7 +61,7 @@ fun convertToRupiah(rupiah: Double?): String? {
     if (rupiah == null) return "Rp. 0"
     val invoceString = rupiah.toString() + ""
     val rupiahFormat = NumberFormat.getInstance(Locale("id", "ID"))
-    return ("Rp" + rupiahFormat.format(invoceString.toDouble()).replace(",", "."))
+    return ("Rp " + rupiahFormat.format(invoceString.toDouble()).replace(",", "."))
 }
 
 fun convertDate(
@@ -80,4 +80,12 @@ fun convertDate(
         e.printStackTrace()
     }
     return formattedDate
+}
+
+fun removeExtension(fileName: String): String {
+    val lastIndex = fileName.lastIndexOf('.')
+    if (lastIndex != -1) {
+        return fileName.substring(0, lastIndex)
+    }
+    return fileName
 }
